@@ -1,0 +1,74 @@
+<!--<html>
+<head>
+<title>Rockola</title>
+<meta content="">
+<style></style>
+<script type="text/javascript" src="script.js">
+
+</script>
+</head>
+<body>
+<h1>Hola mundo</h1>
+<span id="Resultado"></span>
+<input type="text" id="Path" value="/home/carlos/Música">
+<button id="Play" >Play</button>
+<button id="Catalog" >Catalog</button>
+
+</body>
+</html>
+-->
+<html ng-app="JukeboxFrontEnd">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular.min.js"></script>
+    <script type="text/javascript" src="scriptA.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        .album{
+            height: 40%;
+        }
+        .trackList{
+            height: 80% ;
+        }
+        ul.albumList li{
+            list-style: none;
+        }
+    </style>
+</head>
+
+<body keypress-events ng-controller="AlbumController">
+<div  class="container-fluid">
+    <h1 class="InputBuffer"><span class="SelectionType">{{ IsAnyAlbumSelected ? "Track" : "Album" }}</span> {{ InputBuffer }}</h1>
+    <div class="row">
+        <ul class="albumList">
+            <li ng-repeat="album in Albums| startFrom:currentPage*pageSize | limitTo:pageSize">
+                <div class="col-xs-6">
+                    <div class="album  panel" ng-class="AlbumHover == album.ID ? 'panel-primary' : 'panel-default'">
+                        <div class="albumHeader panel-heading">
+                            {{ album.ID |padLeft:4}}  <span class="AlbumArtistName">{{album.Artist}}</span> <span class="AlbumTitle">{{album.Title}}</span>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-xs-6">
+                            </div>
+                            <div class="col-xs-6 trackList">
+                                <ul>
+                                    <li ng-repeat="track in album.Tracks">
+                                        {{ $index }} {{track.Artist }} {{ track.Title }}
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
